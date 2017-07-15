@@ -1,0 +1,2151 @@
+"/Applications/Postgres.app/Contents/Versions/9.6/bin/psql" -p5432 -d "unenergy"
+Last login: Wed May 31 14:09:07 on ttys000
+-bash: /usr/local/bin/virtualenvwrapper.sh: No such file or directory
+dyn-160-39-244-207:~ MaijaLiisaEhlinger$ "/Applications/Postgres.app/Contents/Versions/9.6/bin/psql" -p5432 -d "unenergy"
+psql (9.6.3)
+Type "help" for help.
+
+unenergy=# \dt+
+                         List of relations
+ Schema | Name  | Type  |       Owner        |  Size  | Description 
+--------+-------+-------+--------------------+--------+-------------
+ public | solar | table | MaijaLiisaEhlinger | 144 kB | 
+(1 row)
+
+unenergy=# \d
+              List of relations
+ Schema | Name  | Type  |       Owner        
+--------+-------+-------+--------------------
+ public | solar | table | MaijaLiisaEhlinger
+(1 row)
+
+unenergy=# \d nam
+Did not find any relation named "nam".
+unenergy=# 
+unenergy=# \d name
+Did not find any relation named "name".
+unenergy=# create table
+unenergy-# ;
+ERROR:  syntax error at or near ";"
+LINE 2: ;
+        ^
+unenergy=# \dt
+              List of relations
+ Schema | Name  | Type  |       Owner        
+--------+-------+-------+--------------------
+ public | solar | table | MaijaLiisaEhlinger
+(1 row)
+
+unenergy=# \dt+
+                         List of relations
+ Schema | Name  | Type  |       Owner        |  Size  | Description 
+--------+-------+-------+--------------------+--------+-------------
+ public | solar | table | MaijaLiisaEhlinger | 144 kB | 
+(1 row)
+
+unenergy=# \c
+You are now connected to database "unenergy" as user "MaijaLiisaEhlinger".
+unenergy=# \d
+              List of relations
+ Schema | Name  | Type  |       Owner        
+--------+-------+-------+--------------------
+ public | solar | table | MaijaLiisaEhlinger
+(1 row)
+
+unenergy=# SELECT count(*) FROM solar;
+ count 
+-------
+   953
+(1 row)
+
+unenergy=# ## This is how you will do a join when wind is inside
+unenergy-# \d solar
+             Table "public.solar"
+  Column   |         Type          | Modifiers 
+-----------+-----------------------+-----------
+ country   | character varying(80) | 
+ commodity | character varying(80) | 
+ year      | integer               | 
+ unit      | character varying(80) | 
+ usage     | double precision      | 
+ footnotes | character varying(20) | 
+
+unenergy-# SELECT solar.country, solar.year, solar.usage, wind.usage FROM solar 
+unenergy-# JOIN wind ON solar.country = wind.country AND solar.year = wind.year 
+unenergy-# ORDER BY solar.country;
+ERROR:  syntax error at or near "##"
+LINE 1: ## This is how you will do a join when wind is inside
+        ^
+unenergy=# 
+unenergy=# 
+unenergy=# 
+unenergy=# CREATE TABLE solar (
+unenergy(#   country varchar(40),
+unenergy(#   type varchar(40),
+unenergy(#   year int,
+unenergy(#   unit varchar(40),
+unenergy(#   usage double precision,
+unenergy(#   notes varchar(40)
+unenergy(# w
+unenergy(# 
+unenergy(# 
+unenergy(# q
+unenergy(# 
+unenergy(# \dt
+              List of relations
+ Schema | Name  | Type  |       Owner        
+--------+-------+-------+--------------------
+ public | solar | table | MaijaLiisaEhlinger
+(1 row)
+
+unenergy(# CREATE TABLE wind (
+unenergy(#   country varchar(40),
+unenergy(#   type varchar(40),
+unenergy(#   year int,
+unenergy(#   unit varchar(40),
+unenergy(#   usage double precision,
+unenergy(#   notes varchar(40)
+unenergy(# 
+unenergy(# \dt
+              List of relations
+ Schema | Name  | Type  |       Owner        
+--------+-------+-------+--------------------
+ public | solar | table | MaijaLiisaEhlinger
+(1 row)
+
+unenergy(# CREATE TABLE
+unenergy(# \copy solar from /Users/Jon/Documents/columbia_syllabus/undata-class/testing.csv delimiter ',' csv
+/Users/Jon/Documents/columbia_syllabus/undata-class/testing.csv: No such file or directory
+unenergy(# \copy wind from /Users/MaijaLiisaEhlinger/Desktop/undata/unwind.csv delimiter ',' csv
+ERROR:  relation "wind" does not exist
+unenergy(# \copy unwind from /Users/MaijaLiisaEhlinger/Desktop/undata/unwind.csv delimiter ',' csv
+ERROR:  relation "unwind" does not exist
+unenergy(# \copy unwind.csv from /Users/MaijaLiisaEhlinger/Desktop/undata/unwind.csv delimiter ',' csv
+ERROR:  schema "unwind" does not exist
+unenergy(# 
+unenergy(# 
+unenergy(# 
+unenergy(# \i
+\i: missing required argument
+unenergy(# \copy unwind2.csv from /Users/MaijaLiisaEhlinger/Desktop/undata/unwind2.csv delimiter ',' csv
+ERROR:  schema "unwind2" does not exist
+unenergy(# CREATE TABLE
+unenergy(# CREATE TABLE wind;
+unenergy(# 
+unenergy=# CREAT TABLE wind;
+ERROR:  syntax error at or near "CREAT"
+LINE 1: CREAT TABLE wind;
+        ^
+unenergy=# CREATE TABLE wind;
+ERROR:  syntax error at or near ";"
+LINE 1: CREATE TABLE wind;
+                         ^
+unenergy=# CREATE TABLE wind (
+unenergy(#   country varchar(40),
+unenergy(#   type varchar(40),
+unenergy(#   year int,
+unenergy(#   unit varchar(40),
+unenergy(#   usage double precision,
+unenergy(#   notes varchar(40)
+unenergy(# )
+unenergy-# );
+ERROR:  syntax error at or near ")"
+LINE 9: );
+        ^
+unenergy=# CREATE TABLE wind (
+unenergy(#   country varchar(40),
+unenergy(#   type varchar(40),
+unenergy(#   year int,
+unenergy(#   unit varchar(40),
+unenergy(#   usage double precision,
+unenergy(#   notes varchar(40)
+unenergy(# )
+unenergy-# ;
+CREATE TABLE
+unenergy=# \dt
+              List of relations
+ Schema | Name  | Type  |       Owner        
+--------+-------+-------+--------------------
+ public | solar | table | MaijaLiisaEhlinger
+ public | wind  | table | MaijaLiisaEhlinger
+(2 rows)
+
+unenergy=# \copy wind from /Users/MaijaLiisaEhlinger/Desktop/undata/unwind2.csv delimiter ',' csv
+COPY 1367
+unenergy=# \dt
+              List of relations
+ Schema | Name  | Type  |       Owner        
+--------+-------+-------+--------------------
+ public | solar | table | MaijaLiisaEhlinger
+ public | wind  | table | MaijaLiisaEhlinger
+(2 rows)
+
+unenergy=# \d+
+                         List of relations
+ Schema | Name  | Type  |       Owner        |  Size  | Description 
+--------+-------+-------+--------------------+--------+-------------
+ public | solar | table | MaijaLiisaEhlinger | 144 kB | 
+ public | wind  | table | MaijaLiisaEhlinger | 192 kB | 
+(2 rows)
+
+unenergy=# SELECT * FROM solar
+unenergy-# ;
+           country           |              commodity               | year |          unit           |       usage        | footnotes 
+-----------------------------+--------------------------------------+------+-------------------------+--------------------+-----------
+ American Samoa              | Electricity - total solar production | 2014 | Kilowatt-hours, million |                1.1 | 1
+ American Samoa              | Electricity - total solar production | 2013 | Kilowatt-hours, million |                1.1 | 1
+ American Samoa              | Electricity - total solar production | 2012 | Kilowatt-hours, million |                1.1 | 
+ Argentina                   | Electricity - total solar production | 2014 | Kilowatt-hours, million |                 16 | 
+ Argentina                   | Electricity - total solar production | 2013 | Kilowatt-hours, million |                 15 | 
+ Argentina                   | Electricity - total solar production | 2012 | Kilowatt-hours, million |                  8 | 
+ Argentina                   | Electricity - total solar production | 2011 | Kilowatt-hours, million |                  2 | 
+ Argentina                   | Electricity - total solar production | 2010 | Kilowatt-hours, million |               0.09 | 
+ Argentina                   | Electricity - total solar production | 2009 | Kilowatt-hours, million |               0.08 | 
+ Australia                   | Electricity - total solar production | 2014 | Kilowatt-hours, million |               4858 | 
+ Australia                   | Electricity - total solar production | 2013 | Kilowatt-hours, million |               3826 | 
+ Australia                   | Electricity - total solar production | 2012 | Kilowatt-hours, million |               2559 | 
+ Australia                   | Electricity - total solar production | 2011 | Kilowatt-hours, million |               1530 | 
+ Australia                   | Electricity - total solar production | 2010 | Kilowatt-hours, million |                426 | 
+ Australia                   | Electricity - total solar production | 2009 | Kilowatt-hours, million |                160 | 
+ Australia                   | Electricity - total solar production | 2008 | Kilowatt-hours, million |                127 | 
+ Australia                   | Electricity - total solar production | 2007 | Kilowatt-hours, million |                109 | 
+ Australia                   | Electricity - total solar production | 2006 | Kilowatt-hours, million |                 91 | 
+ Australia                   | Electricity - total solar production | 2005 | Kilowatt-hours, million |                 79 | 
+ Australia                   | Electricity - total solar production | 2004 | Kilowatt-hours, million |                 69 | 
+ Australia                   | Electricity - total solar production | 2003 | Kilowatt-hours, million |                 59 | 
+ Australia                   | Electricity - total solar production | 2002 | Kilowatt-hours, million |                 50 | 
+unenergy=# 
+unenergy=# SELECT name, year, usage FROM solar WHERE year = '2014' DESC NULLS LAST;
+ERROR:  syntax error at or near "DESC"
+LINE 1: ... name, year, usage FROM solar WHERE year = '2014' DESC NULLS...
+                                                             ^
+unenergy=# SELECT name, year, usage FROM solar WHERE year = '2014';
+ERROR:  column "name" does not exist
+LINE 1: SELECT name, year, usage FROM solar WHERE year = '2014';
+               ^
+unenergy=# select country, year, usage FROM solar WHERE year = '2014';
+           country           | year |       usage        
+-----------------------------+------+--------------------
+ American Samoa              | 2014 |                1.1
+ Argentina                   | 2014 |                 16
+ Australia                   | 2014 |               4858
+ Austria                     | 2014 |                785
+ Azerbaijan                  | 2014 |                  3
+ Bangladesh                  | 2014 |                145
+ Belarus                     | 2014 |                  1
+ Belgium                     | 2014 |               2883
+ Bolivia (Plur. State of)    | 2014 |                  6
+ Botswana                    | 2014 |                  2
+ Brazil                      | 2014 |                 16
+ Brunei Darussalam           | 2014 |                  2
+ Bulgaria                    | 2014 |               1252
+ Cabo Verde                  | 2014 |               5.02
+ Cambodia                    | 2014 |                  3
+ Canada                      | 2014 |               1756
+ Chile                       | 2014 |                489
+ China                       | 2014 |              15189
+ Costa Rica                  | 2014 |                  3
+ Croatia                     | 2014 |                 35
+ Cyprus                      | 2014 |                 84
+ Czechia                     | 2014 |               2123
+ Denmark                     | 2014 |                596
+ Ecuador                     | 2014 |               16.5
+ Egypt                       | 2014 |                247
+ Eritrea                     | 2014 |                  2
+ Finland                     | 2014 |                  8
+ France                      | 2014 |               5909
+ French Guiana               | 2014 |                 51
+ French Polynesia            | 2014 |                 10
+ Gabon                       | 2014 |                  2
+ Germany                     | 2014 |              36056
+ Greece                      | 2014 |               3792
+ Guadeloupe                  | 2014 |                 95
+ Guatemala                   | 2014 |                  7
+ Hungary                     | 2014 |                 56
+ India                       | 2014 |               5020
+ Indonesia                   | 2014 |                6.8
+ Ireland                     | 2014 |                  1
+ Israel                      | 2014 |                840
+ Italy                       | 2014 |              22306
+ Japan                       | 2014 |              24506
+unenergy=# 
+unenergy=# SELECT name, year, usage FROM solar WHERE year = '2014' LIMIT 15;
+ERROR:  column "name" does not exist
+LINE 1: SELECT name, year, usage FROM solar WHERE year = '2014' LIMI...
+               ^
+unenergy=# select country, year, usage FROM solar WHERE year = '2014' LIMIT 15;
+         country          | year | usage 
+--------------------------+------+-------
+ American Samoa           | 2014 |   1.1
+ Argentina                | 2014 |    16
+ Australia                | 2014 |  4858
+ Austria                  | 2014 |   785
+ Azerbaijan               | 2014 |     3
+ Bangladesh               | 2014 |   145
+ Belarus                  | 2014 |     1
+ Belgium                  | 2014 |  2883
+ Bolivia (Plur. State of) | 2014 |     6
+ Botswana                 | 2014 |     2
+ Brazil                   | 2014 |    16
+ Brunei Darussalam        | 2014 |     2
+ Bulgaria                 | 2014 |  1252
+ Cabo Verde               | 2014 |  5.02
+ Cambodia                 | 2014 |     3
+(15 rows)
+
+unenergy=# select country, year, max(usage) FROM solar WHERE year = '2014' ORDER BY max(usage) LIMIT 15;
+ERROR:  column "solar.country" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select country, year, max(usage) FROM solar WHERE year = '20...
+               ^
+unenergy=# select country, year, max(usage) FROM solar WHERE year = '2014';
+ERROR:  column "solar.country" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select country, year, max(usage) FROM solar WHERE year = '20...
+               ^
+unenergy=# select country, year, usage FROM solar WHERE year = '2014' LIMIT 15;
+         country          | year | usage 
+--------------------------+------+-------
+ American Samoa           | 2014 |   1.1
+ Argentina                | 2014 |    16
+ Australia                | 2014 |  4858
+ Austria                  | 2014 |   785
+ Azerbaijan               | 2014 |     3
+ Bangladesh               | 2014 |   145
+ Belarus                  | 2014 |     1
+ Belgium                  | 2014 |  2883
+ Bolivia (Plur. State of) | 2014 |     6
+ Botswana                 | 2014 |     2
+ Brazil                   | 2014 |    16
+ Brunei Darussalam        | 2014 |     2
+ Bulgaria                 | 2014 |  1252
+ Cabo Verde               | 2014 |  5.02
+ Cambodia                 | 2014 |     3
+(15 rows)
+
+unenergy=# select country, year, (max)usage FROM solar WHERE year = '2014' LIMIT 15;
+ERROR:  column "max" does not exist
+LINE 1: select country, year, (max)usage FROM solar WHERE year = '20...
+                               ^
+unenergy=# select country, year, (max)usage FROM solar HAVING year = '2014' LIMIT 15;
+ERROR:  column "max" does not exist
+LINE 1: select country, year, (max)usage FROM solar HAVING year = '2...
+                               ^
+unenergy=# select country, year, (max)usage FROM solar HAVING year = '2014' LIMIT 15;
+ERROR:  column "max" does not exist
+LINE 1: select country, year, (max)usage FROM solar HAVING year = '2...
+                               ^
+unenergy=# select country, year, usage FROM solar HAVING year = '2014' LIMIT 15;
+ERROR:  column "solar.country" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select country, year, usage FROM solar HAVING year = '2014' ...
+               ^
+unenergy=# select country, year, usage FROM solar WHERE year = '2014' LIMIT 15;
+         country          | year | usage 
+--------------------------+------+-------
+ American Samoa           | 2014 |   1.1
+ Argentina                | 2014 |    16
+ Australia                | 2014 |  4858
+ Austria                  | 2014 |   785
+ Azerbaijan               | 2014 |     3
+ Bangladesh               | 2014 |   145
+ Belarus                  | 2014 |     1
+ Belgium                  | 2014 |  2883
+ Bolivia (Plur. State of) | 2014 |     6
+ Botswana                 | 2014 |     2
+ Brazil                   | 2014 |    16
+ Brunei Darussalam        | 2014 |     2
+ Bulgaria                 | 2014 |  1252
+ Cabo Verde               | 2014 |  5.02
+ Cambodia                 | 2014 |     3
+(15 rows)
+
+unenergy=# select country, year, (max)usage FROM solar HAVING year = '2014' LIMIT 15;
+ERROR:  column "max" does not exist
+LINE 1: select country, year, (max)usage FROM solar HAVING year = '2...
+                               ^
+unenergy=# select country, year, (max)usage FROM solar HAVING year = '2014' ORDER BY max(usage) LIMIT 15;
+ERROR:  column "max" does not exist
+LINE 1: select country, year, (max)usage FROM solar HAVING year = '2...
+                               ^
+unenergy=# select country, year, max(usage) FROM solar HAVING year = '2014' ORDER BY max(usage) LIMIT 15;
+ERROR:  column "solar.country" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select country, year, max(usage) FROM solar HAVING year = '2...
+               ^
+unenergy=# select country, year, max(usage) FROM solar HAVING year = '2014' ORDER BY max(usage) LIMIT 15;
+ERROR:  column "solar.country" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select country, year, max(usage) FROM solar HAVING year = '2...
+               ^
+unenergy=# SELECT max(usage), country, year FROM solar HAVING year = '2014' ORDER BY max(usage) LIMIT 15;
+ERROR:  column "solar.country" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT max(usage), country, year FROM solar HAVING year = '2...
+                           ^
+unenergy=# select country, usage, year FROM solar WHERE year = '2014' ORDER BY usage LIMIT 15;
+        country         |       usage        | year 
+------------------------+--------------------+------
+ Niger                  |              0.005 | 2014
+ Nauru                  |              0.054 | 2014
+ Niue                   | 0.0666666666666667 | 2014
+ St. Helena and Depend. |               0.07 | 2014
+ Marshall Islands       |                0.2 | 2014
+ Vanuatu                |                0.2 | 2014
+ Rwanda                 |                0.3 | 2014
+ Seychelles             |               0.71 | 2014
+ Republic of Moldova    |                  1 | 2014
+ Kazakhstan             |                  1 | 2014
+ Saudi Arabia           |                  1 | 2014
+ Madagascar             |                  1 | 2014
+ Belarus                |                  1 | 2014
+ Ireland                |                  1 | 2014
+ St. Kitts-Nevis        |                  1 | 2014
+(15 rows)
+
+unenergy=# select country, usage, year FROM solar WHERE year = '2014' ORDER BY usage LIMIT 15;
+        country         |       usage        | year 
+------------------------+--------------------+------
+ Niger                  |              0.005 | 2014
+ Nauru                  |              0.054 | 2014
+ Niue                   | 0.0666666666666667 | 2014
+ St. Helena and Depend. |               0.07 | 2014
+ Marshall Islands       |                0.2 | 2014
+ Vanuatu                |                0.2 | 2014
+ Rwanda                 |                0.3 | 2014
+ Seychelles             |               0.71 | 2014
+ Republic of Moldova    |                  1 | 2014
+ Kazakhstan             |                  1 | 2014
+ Saudi Arabia           |                  1 | 2014
+ Madagascar             |                  1 | 2014
+ Belarus                |                  1 | 2014
+ Ireland                |                  1 | 2014
+ St. Kitts-Nevis        |                  1 | 2014
+(15 rows)
+
+unenergy=# select country, usage, year FROM solar WHERE year = '2014' ORDER BY usage desc nulls last LIMIT 15;
+      country       | usage | year 
+--------------------+-------+------
+ Germany            | 36056 | 2014
+ United States      | 24603 | 2014
+ Japan              | 24506 | 2014
+ Italy              | 22306 | 2014
+ China              | 15189 | 2014
+ Spain              | 13673 | 2014
+ France             |  5909 | 2014
+ India              |  5020 | 2014
+ Australia          |  4858 | 2014
+ United Kingdom     |  4050 | 2014
+ Greece             |  3792 | 2014
+ Belgium            |  2883 | 2014
+ Korea, Republic of |  2557 | 2014
+ Czechia            |  2123 | 2014
+ Canada             |  1756 | 2014
+(15 rows)
+
+unenergy=# SELECT avg(usage), year, country FROM solar HAVING avg(usage) > 500 ORDER BY avg(usage) desc nulls last;
+ERROR:  column "solar.year" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT avg(usage), year, country FROM solar HAVING avg(usage...
+                           ^
+unenergy=# SELECT avg(usage), country FROM solar HAVING avg(usage) > 500 ORDER BY avg(usage) desc nulls last;
+ERROR:  column "solar.country" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT avg(usage), country FROM solar HAVING avg(usage) > 50...
+                           ^
+unenergy=# SELECT avg(usage), country FROM solar GROUP BY country ORDER BY avg(usage) > 500 DESC NULLS LAST;
+        avg         |           country           
+--------------------+-----------------------------
+   644.045454545455 | Australia
+   905.545454545455 | Greece
+            2769.84 | Japan
+             4226.5 | India
+             3266.6 | United States
+   841.619047619048 | France
+             2596.6 | Spain
+   874.727272727273 | Belgium
+            3066.32 | Italy
+            5987.75 | Germany
+   1023.11111111111 | Czechia
+                591 | Bulgaria
+            10376.5 | China
+              78.75 | Denmark
+   193.526666666667 | Lao People's Dem. Rep.
+                145 | Bangladesh
+             3.8575 | Cabo Verde
+                 40 | Lithuania
+   81.9583333333333 | Netherlands
+                  1 | Republic of Moldova
+ 0.0688888888888889 | Iran (Islamic Rep. of)
+              256.6 | Egypt
+unenergy=# 
+unenergy=# SELECT avg(usage), country FROM solar GROUP BY country HAVING avg(usage) > 500 ORDER BY avg(usage) DESC NULLS LAST;
+       avg        |    country    
+------------------+---------------
+          10376.5 | China
+          5987.75 | Germany
+           4226.5 | India
+           3266.6 | United States
+          3066.32 | Italy
+          2769.84 | Japan
+           2596.6 | Spain
+ 1023.11111111111 | Czechia
+ 905.545454545455 | Greece
+ 874.727272727273 | Belgium
+ 841.619047619048 | France
+ 644.045454545455 | Australia
+              591 | Bulgaria
+(13 rows)
+
+unenergy=# SELECT year, country FROM solar WHERE year >= '2012';
+ year |           country           
+------+-----------------------------
+ 2014 | American Samoa
+ 2013 | American Samoa
+ 2012 | American Samoa
+ 2014 | Argentina
+ 2013 | Argentina
+ 2012 | Argentina
+ 2014 | Australia
+ 2013 | Australia
+ 2012 | Australia
+ 2014 | Austria
+ 2013 | Austria
+ 2012 | Austria
+ 2014 | Azerbaijan
+ 2013 | Azerbaijan
+ 2014 | Bangladesh
+ 2013 | Bangladesh
+ 2014 | Belarus
+ 2014 | Belgium
+ 2013 | Belgium
+ 2012 | Belgium
+ 2014 | Bolivia (Plur. State of)
+ 2013 | Bolivia (Plur. State of)
+ 2012 | Bolivia (Plur. State of)
+ 2014 | Botswana
+ 2013 | Botswana
+ 2012 | Botswana
+ 2014 | Brazil
+ 2013 | Brazil
+ 2014 | Brunei Darussalam
+ 2013 | Brunei Darussalam
+ 2012 | Brunei Darussalam
+ 2014 | Bulgaria
+ 2013 | Bulgaria
+ 2012 | Bulgaria
+ 2014 | Cabo Verde
+ 2013 | Cabo Verde
+ 2012 | Cabo Verde
+ 2014 | Cambodia
+ 2013 | Cambodia
+ 2012 | Cambodia
+ 2014 | Canada
+ 2013 | Canada
+ 2012 | Canada
+ 2014 | Chile
+ 2013 | Chile
+ 2012 | Chile
+ 2014 | China
+ 2013 | China
+ 2014 | Costa Rica
+ 2013 | Costa Rica
+ 2012 | Costa Rica
+ 2014 | Croatia
+ 2013 | Croatia
+ 2012 | Croatia
+ 2014 | Cyprus
+ 2013 | Cyprus
+ 2012 | Cyprus
+ 2014 | Czechia
+ 2013 | Czechia
+ 2012 | Czechia
+ 2014 | Denmark
+ 2013 | Denmark
+ 2012 | Denmark
+ 2014 | Ecuador
+ 2013 | Ecuador
+ 2012 | Ecuador
+ 2014 | Egypt
+ 2013 | Egypt
+ 2012 | Egypt
+ 2014 | Eritrea
+ 2013 | Eritrea
+ 2012 | Eritrea
+unenergy=# 
+unenergy=# SELECT year, country FROM solar WHERE year >= '2012' GROUP BY country;
+ERROR:  column "solar.year" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT year, country FROM solar WHERE year >= '2012' GROUP B...
+               ^
+unenergy=# SELECT year, country FROM solar WHERE year >= '2012' GROUP BY year;
+ERROR:  column "solar.country" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT year, country FROM solar WHERE year >= '2012' GROUP B...
+                     ^
+unenergy=# SELECT year, country FROM solar WHERE year >= '2012';
+ year |           country           
+------+-----------------------------
+ 2014 | American Samoa
+ 2013 | American Samoa
+ 2012 | American Samoa
+ 2014 | Argentina
+ 2013 | Argentina
+ 2012 | Argentina
+ 2014 | Australia
+ 2013 | Australia
+ 2012 | Australia
+ 2014 | Austria
+ 2013 | Austria
+ 2012 | Austria
+ 2014 | Azerbaijan
+ 2013 | Azerbaijan
+ 2014 | Bangladesh
+ 2013 | Bangladesh
+ 2014 | Belarus
+ 2014 | Belgium
+ 2013 | Belgium
+ 2012 | Belgium
+ 2014 | Bolivia (Plur. State of)
+ 2013 | Bolivia (Plur. State of)
+unenergy=# 
+unenergy=# SELECT year, country FROM solar WHERE year >= '2012' GROUP BY country;
+ERROR:  column "solar.year" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT year, country FROM solar WHERE year >= '2012' GROUP B...
+               ^
+unenergy=# SELECT year, country FROM solar WHERE year >= '2012' GROUP BY solar.country;
+ERROR:  column "solar.year" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT year, country FROM solar WHERE year >= '2012' GROUP B...
+               ^
+unenergy=# SELECT year, country FROM solar WHERE year >= '2012' GROUP BY year;
+ERROR:  column "solar.country" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT year, country FROM solar WHERE year >= '2012' GROUP B...
+                     ^
+unenergy=# SELECT year, country FROM solar WHERE year >= 2012 GROUP BY solar.country;
+ERROR:  column "solar.year" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT year, country FROM solar WHERE year >= 2012 GROUP BY ...
+               ^
+unenergy=# SELECT year, country FROM solar WHERE year >= 2012 GROUP BY solar.year;
+ERROR:  column "solar.country" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT year, country FROM solar WHERE year >= 2012 GROUP BY ...
+                     ^
+unenergy=# SELECT year, country FROM solar WHERE year >= 2012 GROUP BY solar.country;
+ERROR:  column "solar.year" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT year, country FROM solar WHERE year >= 2012 GROUP BY ...
+               ^
+unenergy=# SELECT year, country FROM solar WHERE year >= 2012 ORDER BY country;
+ year |           country           
+------+-----------------------------
+ 2014 | American Samoa
+ 2013 | American Samoa
+ 2012 | American Samoa
+ 2014 | Argentina
+ 2013 | Argentina
+ 2012 | Argentina
+ 2014 | Australia
+ 2013 | Australia
+ 2012 | Australia
+ 2014 | Austria
+ 2013 | Austria
+ 2012 | Austria
+ 2014 | Azerbaijan
+ 2013 | Azerbaijan
+ 2014 | Bangladesh
+ 2013 | Bangladesh
+ 2014 | Belarus
+ 2014 | Belgium
+ 2013 | Belgium
+ 2012 | Belgium
+ 2014 | Bolivia (Plur. State of)
+ 2013 | Bolivia (Plur. State of)
+unenergy=# 
+unenergy=# SELECT year, country FROM solar WHERE year >= 2012 AS year ON country ORDER BY country;
+ERROR:  syntax error at or near "AS"
+LINE 1: ...ELECT year, country FROM solar WHERE year >= 2012 AS year ON...
+                                                             ^
+unenergy=# SELECT year, country FROM solar WHERE year >= 2012 country ORDER BY country;
+ERROR:  syntax error at or near "country"
+LINE 1: ...ELECT year, country FROM solar WHERE year >= 2012 country OR...
+                                                             ^
+unenergy=# SELECT year, country FROM solar WHERE year >= 2012 country ORDER BY country
+unenergy-# INNER JOIN country ON year.solar;
+ERROR:  syntax error at or near "country"
+LINE 1: ...ELECT year, country FROM solar WHERE year >= 2012 country OR...
+                                                             ^
+unenergy=# SELECT year, country FROM solar WHERE year >= 2012 country ORDER BY country INNER JOIN country ON year.solar;                                                            ERROR:  syntax error at or near "country"
+LINE 1: ...ELECT year, country FROM solar WHERE year >= 2012 country OR...
+                                                             ^
+unenergy=# SELECT year, country FROM solar WHERE year >= 2012 ORDER BY country INNER JOIN country ON year.solar;
+ERROR:  syntax error at or near "INNER"
+LINE 1: ...ry FROM solar WHERE year >= 2012 ORDER BY country INNER JOIN...
+                                                             ^
+unenergy=# SELECT year, country FROM solar WHERE year >= 2012 ORDER BY country JOIN country ON year.solar;
+ERROR:  syntax error at or near "JOIN"
+LINE 1: ...ry FROM solar WHERE year >= 2012 ORDER BY country JOIN count...
+                                                             ^
+unenergy=# SELECT year, country FROM solar WHERE year >= 2012 ORDER BY country;
+ year |           country           
+------+-----------------------------
+ 2014 | American Samoa
+ 2013 | American Samoa
+ 2012 | American Samoa
+ 2014 | Argentina
+ 2013 | Argentina
+ 2012 | Argentina
+ 2014 | Australia
+ 2013 | Australia
+ 2012 | Australia
+ 2014 | Austria
+ 2013 | Austria
+ 2012 | Austria
+ 2014 | Azerbaijan
+ 2013 | Azerbaijan
+ 2014 | Bangladesh
+ 2013 | Bangladesh
+ 2014 | Belarus
+ 2014 | Belgium
+ 2013 | Belgium
+ 2012 | Belgium
+ 2014 | Bolivia (Plur. State of)
+ 2013 | Bolivia (Plur. State of)
+unenergy=# 
+unenergy=# SELECT year, country FROM solar WHERE year >= 2012 ORDER BY country
+unenergy-# JOIN * ON year;
+ERROR:  syntax error at or near "JOIN"
+LINE 2: JOIN * ON year;
+        ^
+unenergy=# SELECT year, country FROM solar HAVING year >= 2012 WHERE country = year.solar ORDER BY country;
+ERROR:  syntax error at or near "WHERE"
+LINE 1: ...LECT year, country FROM solar HAVING year >= 2012 WHERE coun...
+                                                             ^
+unenergy=# SELECT year, country FROM solar HAVING year >= 2012 ORDER BY country;
+ERROR:  column "solar.year" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT year, country FROM solar HAVING year >= 2012 ORDER BY...
+               ^
+unenergy=# SELECT year, country FROM solar WHERE year >= 2012 ORDER BY country;
+ year |           country           
+------+-----------------------------
+ 2014 | American Samoa
+ 2013 | American Samoa
+ 2012 | American Samoa
+ 2014 | Argentina
+ 2013 | Argentina
+ 2012 | Argentina
+ 2014 | Australia
+ 2013 | Australia
+ 2012 | Australia
+ 2014 | Austria
+ 2013 | Austria
+ 2012 | Austria
+ 2014 | Azerbaijan
+ 2013 | Azerbaijan
+ 2014 | Bangladesh
+ 2013 | Bangladesh
+ 2014 | Belarus
+ 2014 | Belgium
+ 2013 | Belgium
+ 2012 | Belgium
+ 2014 | Bolivia (Plur. State of)
+ 2013 | Bolivia (Plur. State of)
+unenergy=# 
+unenergy=# SELECT year, country FROM solar JOIN years on solar.countries WHERE year >= 2012 ORDER BY country;
+ERROR:  relation "years" does not exist
+LINE 1: SELECT year, country FROM solar JOIN years on solar.countrie...
+                                             ^
+unenergy=# SELECT year, country FROM solar JOIN year on solar.country WHERE year >= 2012 ORDER BY country;
+ERROR:  relation "year" does not exist
+LINE 1: SELECT year, country FROM solar JOIN year on solar.country W...
+                                             ^
+unenergy=# SELECT year, country FROM solar JOIN solar.year on solar.country WHERE year >= 2012 ORDER BY country;
+ERROR:  relation "solar.year" does not exist
+LINE 1: SELECT year, country FROM solar JOIN solar.year on solar.cou...
+                                             ^
+unenergy=# SELECT year, country FROM solar WHERE year = 2012 ORDER BY country;
+ year |           country           
+------+-----------------------------
+ 2012 | American Samoa
+ 2012 | Argentina
+ 2012 | Australia
+ 2012 | Austria
+ 2012 | Belgium
+ 2012 | Bolivia (Plur. State of)
+ 2012 | Botswana
+ 2012 | Brunei Darussalam
+ 2012 | Bulgaria
+ 2012 | Cabo Verde
+ 2012 | Cambodia
+ 2012 | Canada
+ 2012 | Chile
+ 2012 | Costa Rica
+ 2012 | Croatia
+ 2012 | Cyprus
+ 2012 | Czechia
+ 2012 | Denmark
+ 2012 | Ecuador
+ 2012 | Egypt
+ 2012 | Eritrea
+ 2012 | Finland
+unenergy=# 
+unenergy=# 
+unenergy=# SELECT year, country FROM solar WHERE year >= 2012 ORDER BY country;
+ year |           country           
+------+-----------------------------
+ 2014 | American Samoa
+ 2013 | American Samoa
+ 2012 | American Samoa
+ 2014 | Argentina
+ 2013 | Argentina
+ 2012 | Argentina
+ 2014 | Australia
+ 2013 | Australia
+ 2012 | Australia
+ 2014 | Austria
+ 2013 | Austria
+ 2012 | Austria
+ 2014 | Azerbaijan
+ 2013 | Azerbaijan
+ 2014 | Bangladesh
+ 2013 | Bangladesh
+ 2014 | Belarus
+ 2014 | Belgium
+ 2013 | Belgium
+ 2012 | Belgium
+ 2014 | Bolivia (Plur. State of)
+ 2013 | Bolivia (Plur. State of)
+unenergy=# 
+unenergy=# SELECT year, country FROM solar WHERE min(year) = 2012 ORDER BY country;
+ERROR:  aggregate functions are not allowed in WHERE
+LINE 1: SELECT year, country FROM solar WHERE min(year) = 2012 ORDER...
+                                              ^
+unenergy=# SELECT min(year), country FROM solar WHERE min(year) = 2012 ORDER BY country;
+ERROR:  aggregate functions are not allowed in WHERE
+LINE 1: SELECT min(year), country FROM solar WHERE min(year) = 2012 ...
+                                                   ^
+unenergy=# SELECT min(year), country FROM solar WHERE year = 2012 ORDER BY country;
+ERROR:  column "solar.country" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT min(year), country FROM solar WHERE year = 2012 ORDER...
+                          ^
+unenergy=# SELECT min(year), country FROM solar WHERE year = 2012;
+ERROR:  column "solar.country" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT min(year), country FROM solar WHERE year = 2012;
+                          ^
+unenergy=# q
+unenergy-# SELECT min(year), country FROM solar WHERE year = 2012;
+ERROR:  syntax error at or near "q"
+LINE 1: q
+        ^
+unenergy=# 
+unenergy=# q                                                                                                                                                                        SELECT min(year), country FROM solar WHERE year = 2012;
+ERROR:  syntax error at or near "q"
+LINE 1: q
+        ^
+unenergy=# 
+unenergy=# 
+unenergy=# 
+unenergy=# SELECT min(year), country FROM solar WHERE year = 2012;                                                                                                                 
+ERROR:  column "solar.country" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT min(year), country FROM solar WHERE year = 2012;
+                          ^
+unenergy=# SELECT min(year), country FROM solar WHERE year = 2012 GROUP BY solar.country;
+ min  |           country           
+------+-----------------------------
+ 2012 | Costa Rica
+ 2012 | Cambodia
+ 2012 | Eritrea
+ 2012 | Germany
+ 2012 | Madagascar
+ 2012 | Cyprus
+ 2012 | France
+ 2012 | Slovenia
+ 2012 | St. Kitts-Nevis
+ 2012 | American Samoa
+ 2012 | Japan
+ 2012 | Ecuador
+ 2012 | United Rep. of Tanzania
+ 2012 | Saudi Arabia
+ 2012 | Denmark
+ 2012 | Lao People's Dem. Rep.
+ 2012 | Cabo Verde
+ 2012 | Lithuania
+ 2012 | Netherlands
+ 2012 | Portugal
+ 2012 | Nauru
+ 2012 | Romania
+ 2012 | Iran (Islamic Rep. of)
+ 2012 | Egypt
+ 2012 | Puerto Rico
+ 2012 | Canada
+ 2012 | Austria
+ 2012 | Maldives
+ 2012 | St. Helena and Depend.
+ 2012 | Australia
+ 2012 | South Africa
+ 2012 | Mauritius
+ 2012 | T.F.Yug.Rep. Macedonia
+ 2012 | United States
+ 2012 | Poland
+ 2012 | Argentina
+ 2012 | Slovakia
+ 2012 | New Caledonia
+ 2012 | Brunei Darussalam
+ 2012 | United Kingdom
+ 2012 | United States Virgin Is.
+ 2012 | Croatia
+ 2012 | Luxembourg
+ 2012 | Tunisia
+ 2012 | Italy
+ 2012 | Sweden
+ 2012 | Czechia
+ 2012 | Niue
+ 2012 | Liechtenstein
+ 2012 | Réunion
+ 2012 | Greece
+ 2012 | Malta
+ 2012 | Other Asia
+ 2012 | Gabon
+ 2012 | Marshall Islands
+ 2012 | Israel
+ 2012 | Philippines
+ 2012 | Chile
+ 2012 | Micronesia (Fed. States of)
+ 2012 | New Zealand
+ 2012 | Switzerland
+ 2012 | Hungary
+ 2012 | Indonesia
+ 2012 | Belgium
+ 2012 | Rwanda
+ 2012 | Guadeloupe
+ 2012 | Martinique
+ 2012 | Botswana
+ 2012 | Finland
+ 2012 | Mexico
+ 2012 | Mayotte
+ 2012 | Sri Lanka
+ 2012 | Bulgaria
+ 2012 | French Polynesia
+ 2012 | Korea, Republic of
+ 2012 | Thailand
+ 2012 | Peru
+ 2012 | Vanuatu
+ 2012 | South Sudan
+ 2012 | Bolivia (Plur. State of)
+ 2012 | Malaysia
+ 2012 | Spain
+ 2012 | Ukraine
+ 2012 | Niger
+ 2012 | Ireland
+ 2012 | French Guiana
+(86 rows)
+
+unenergy=# SELECT solar.usage, wind.usage FROM solar AND wind;
+ERROR:  syntax error at or near "AND"
+LINE 1: SELECT solar.usage, wind.usage FROM solar AND wind;
+                                                  ^
+unenergy=# SELECT * FROM wind;
+           country           |                type                 | year |          unit           |      usage       | notes 
+-----------------------------+-------------------------------------+------+-------------------------+------------------+-------
+ Argentina                   | Electricity - total wind production | 2014 | Kilowatt-hours, million |              730 | 
+ Argentina                   | Electricity - total wind production | 2013 | Kilowatt-hours, million |              461 | 
+ Argentina                   | Electricity - total wind production | 2012 | Kilowatt-hours, million |              369 | 
+ Argentina                   | Electricity - total wind production | 2011 | Kilowatt-hours, million |               26 | 
+ Argentina                   | Electricity - total wind production | 2010 | Kilowatt-hours, million |               25 | 
+ Argentina                   | Electricity - total wind production | 2009 | Kilowatt-hours, million |               36 | 
+ Argentina                   | Electricity - total wind production | 2008 | Kilowatt-hours, million |               42 | 
+ Argentina                   | Electricity - total wind production | 2007 | Kilowatt-hours, million |               61 | 
+ Argentina                   | Electricity - total wind production | 2006 | Kilowatt-hours, million |               70 | 
+ Argentina                   | Electricity - total wind production | 2005 | Kilowatt-hours, million |               75 | 
+ Argentina                   | Electricity - total wind production | 2004 | Kilowatt-hours, million |               72 | 
+ Argentina                   | Electricity - total wind production | 2003 | Kilowatt-hours, million |               78 | 
+ Argentina                   | Electricity - total wind production | 2002 | Kilowatt-hours, million |               73 | 
+ Argentina                   | Electricity - total wind production | 2001 | Kilowatt-hours, million |               49 | 
+ Argentina                   | Electricity - total wind production | 2000 | Kilowatt-hours, million |               35 | 
+ Argentina                   | Electricity - total wind production | 1999 | Kilowatt-hours, million |               35 | 
+ Argentina                   | Electricity - total wind production | 1998 | Kilowatt-hours, million |               33 | 
+ Argentina                   | Electricity - total wind production | 1997 | Kilowatt-hours, million |               15 | 
+ Argentina                   | Electricity - total wind production | 1996 | Kilowatt-hours, million |               10 | 
+ Armenia                     | Electricity - total wind production | 2014 | Kilowatt-hours, million |                4 | 
+ Armenia                     | Electricity - total wind production | 2013 | Kilowatt-hours, million |                4 | 
+ Armenia                     | Electricity - total wind production | 2012 | Kilowatt-hours, million |                4 | 
+ Armenia                     | Electricity - total wind production | 2011 | Kilowatt-hours, million |                6 | 
+unenergy=# 
+unenergy=# SELECT Germany FROM wind;
+ERROR:  column "germany" does not exist
+LINE 1: SELECT Germany FROM wind;
+               ^
+unenergy=# SELECT name FROM wind;
+ERROR:  column "name" does not exist
+LINE 1: SELECT name FROM wind;
+               ^
+unenergy=# SELECT country FROM wind;
+           country           
+-----------------------------
+ Argentina
+ Argentina
+ Argentina
+ Argentina
+ Argentina
+ Argentina
+ Argentina
+ Argentina
+ Argentina
+ Argentina
+ Argentina
+ Argentina
+ Argentina
+ Argentina
+ Argentina
+ Argentina
+ Argentina
+ Argentina
+ Argentina
+ Armenia
+ Armenia
+ Armenia
+unenergy=# 
+unenergy=# SELECT country, usage FROM wind;
+           country           |      usage       
+-----------------------------+------------------
+ Argentina                   |              730
+ Argentina                   |              461
+ Argentina                   |              369
+ Argentina                   |               26
+ Argentina                   |               25
+ Argentina                   |               36
+ Argentina                   |               42
+ Argentina                   |               61
+ Argentina                   |               70
+ Argentina                   |               75
+ Argentina                   |               72
+ Argentina                   |               78
+ Argentina                   |               73
+ Argentina                   |               49
+ Argentina                   |               35
+ Argentina                   |               35
+ Argentina                   |               33
+ Argentina                   |               15
+ Argentina                   |               10
+ Armenia                     |                4
+ Armenia                     |                4
+ Armenia                     |                4
+unenergy=# 
+unenergy=# SELECT country, usage, year FROM wind AND country, usage, year FROM solar;
+ERROR:  syntax error at or near "AND"
+LINE 1: SELECT country, usage, year FROM wind AND country, usage, ye...
+                                              ^
+unenergy=# SELECT * FROM solar INNER JOIN wind ON name;
+ERROR:  column "name" does not exist
+LINE 1: SELECT * FROM solar INNER JOIN wind ON name;
+                                               ^
+unenergy=# SELECT * FROM solar INNER JOIN wind ON country;
+ERROR:  column reference "country" is ambiguous
+LINE 1: SELECT * FROM solar INNER JOIN wind ON country;
+                                               ^
+unenergy=# SELECT * FROM solar INNER JOIN wind ON year;
+ERROR:  column reference "year" is ambiguous
+LINE 1: SELECT * FROM solar INNER JOIN wind ON year;
+                                               ^
+unenergy=# SELECT * FROM solar INNER JOIN wind ON solar.year;
+ERROR:  argument of JOIN/ON must be type boolean, not type integer
+LINE 1: SELECT * FROM solar INNER JOIN wind ON solar.year;
+                                               ^
+unenergy=# select country, year usage FROM wind WHERE country = 'Germany';
+ country | usage 
+---------+-------
+ Germany |  2014
+ Germany |  2013
+ Germany |  2012
+ Germany |  2011
+ Germany |  2010
+ Germany |  2009
+ Germany |  2008
+ Germany |  2007
+ Germany |  2006
+ Germany |  2005
+ Germany |  2004
+ Germany |  2003
+ Germany |  2002
+ Germany |  2001
+ Germany |  2000
+ Germany |  1999
+ Germany |  1998
+ Germany |  1997
+ Germany |  1996
+ Germany |  1995
+ Germany |  1994
+ Germany |  1993
+unenergy=# select country, year usage FROM solar WHERE country = 'Germany';
+ country | usage 
+---------+-------
+ Germany |  2014
+ Germany |  2013
+ Germany |  2012
+ Germany |  2011
+ Germany |  2010
+ Germany |  2009
+ Germany |  2008
+ Germany |  2007
+ Germany |  2006
+ Germany |  2005
+ Germany |  2004
+ Germany |  2003
+ Germany |  2002
+ Germany |  2001
+ Germany |  2000
+ Germany |  1999
+ Germany |  1998
+ Germany |  1997
+ Germany |  1996
+ Germany |  1995
+ Germany |  1994
+ Germany |  1993
+unenergy=# 
+unenergy=# \dt
+              List of relations
+ Schema | Name  | Type  |       Owner        
+--------+-------+-------+--------------------
+ public | solar | table | MaijaLiisaEhlinger
+ public | wind  | table | MaijaLiisaEhlinger
+(2 rows)
+
+unenergy=# \d
+              List of relations
+ Schema | Name  | Type  |       Owner        
+--------+-------+-------+--------------------
+ public | solar | table | MaijaLiisaEhlinger
+ public | wind  | table | MaijaLiisaEhlinger
+(2 rows)
+
+unenergy=# \d wind
+             Table "public.wind"
+ Column  |         Type          | Modifiers 
+---------+-----------------------+-----------
+ country | character varying(40) | 
+ type    | character varying(40) | 
+ year    | integer               | 
+ unit    | character varying(40) | 
+ usage   | double precision      | 
+ notes   | character varying(40) | 
+
+unenergy=# \d solar
+             Table "public.solar"
+  Column   |         Type          | Modifiers 
+-----------+-----------------------+-----------
+ country   | character varying(80) | 
+ commodity | character varying(80) | 
+ year      | integer               | 
+ unit      | character varying(80) | 
+ usage     | double precision      | 
+ footnotes | character varying(20) | 
+
+unenergy=# SELECT wind.usage, solar.usage FROM wind;
+ERROR:  missing FROM-clause entry for table "solar"
+LINE 1: SELECT wind.usage, solar.usage FROM wind;
+                           ^
+unenergy=# select country, year usage FROM solar WHERE country = 'Germany';
+ country | usage 
+---------+-------
+ Germany |  2014
+ Germany |  2013
+ Germany |  2012
+ Germany |  2011
+ Germany |  2010
+ Germany |  2009
+ Germany |  2008
+ Germany |  2007
+ Germany |  2006
+ Germany |  2005
+ Germany |  2004
+ Germany |  2003
+ Germany |  2002
+ Germany |  2001
+ Germany |  2000
+ Germany |  1999
+ Germany |  1998
+ Germany |  1997
+ Germany |  1996
+ Germany |  1995
+ Germany |  1994
+ Germany |  1993
+unenergy=# 
+unenergy=# select country, year usage FROM wind WHERE country = 'Germany';
+ country | usage 
+---------+-------
+ Germany |  2014
+ Germany |  2013
+ Germany |  2012
+ Germany |  2011
+ Germany |  2010
+ Germany |  2009
+ Germany |  2008
+ Germany |  2007
+ Germany |  2006
+ Germany |  2005
+ Germany |  2004
+ Germany |  2003
+ Germany |  2002
+ Germany |  2001
+ Germany |  2000
+ Germany |  1999
+ Germany |  1998
+ Germany |  1997
+ Germany |  1996
+ Germany |  1995
+ Germany |  1994
+ Germany |  1993
+ Germany |  1992
+ Germany |  1991
+(24 rows)
+
+unenergy=# 
+unenergy=# 
+unenergy=# 
+unenergy=# select year usage FROM wind WHERE country = 'Germany';
+ usage 
+-------
+  2014
+  2013
+  2012
+  2011
+  2010
+  2009
+  2008
+  2007
+  2006
+  2005
+  2004
+  2003
+  2002
+  2001
+  2000
+  1999
+  1998
+  1997
+  1996
+  1995
+  1994
+  1993
+unenergy=# 
+unenergy=# select year,usage FROM wind WHERE country = 'Germany';
+ year | usage 
+------+-------
+ 2014 | 57357
+ 2013 | 51708
+ 2012 | 50670
+ 2011 | 48883
+ 2010 | 37793
+ 2009 | 38647
+ 2008 | 40574
+ 2007 | 39713
+ 2006 | 30710
+ 2005 | 27229
+ 2004 | 25509
+ 2003 | 18713
+ 2002 | 15856
+ 2001 | 10456
+ 2000 |  9352
+ 1999 |  5528
+ 1998 |  4593
+ 1997 |  3034
+ 1996 |  2078
+ 1995 |  1712
+ 1994 |  1428
+ 1993 |   674
+unenergy=# 
+unenergy=# select country, year,usage FROM wind WHERE country = 'Germany';
+ country | year | usage 
+---------+------+-------
+ Germany | 2014 | 57357
+ Germany | 2013 | 51708
+ Germany | 2012 | 50670
+ Germany | 2011 | 48883
+ Germany | 2010 | 37793
+ Germany | 2009 | 38647
+ Germany | 2008 | 40574
+ Germany | 2007 | 39713
+ Germany | 2006 | 30710
+ Germany | 2005 | 27229
+ Germany | 2004 | 25509
+ Germany | 2003 | 18713
+ Germany | 2002 | 15856
+ Germany | 2001 | 10456
+ Germany | 2000 |  9352
+ Germany | 1999 |  5528
+ Germany | 1998 |  4593
+ Germany | 1997 |  3034
+ Germany | 1996 |  2078
+ Germany | 1995 |  1712
+ Germany | 1994 |  1428
+ Germany | 1993 |   674
+ Germany | 1992 |   291
+ Germany | 1991 |   215
+unenergy=# 
+unenergy=# select country, year,usage FROM solar WHERE country = 'Germany';
+ country | year | usage 
+---------+------+-------
+ Germany | 2014 | 36056
+ Germany | 2013 | 31010
+ Germany | 2012 | 26380
+ Germany | 2011 | 19599
+ Germany | 2010 | 11729
+ Germany | 2009 |  6584
+ Germany | 2008 |  4420
+ Germany | 2007 |  3075
+ Germany | 2006 |  2220
+ Germany | 2005 |  1282
+ Germany | 2004 |   557
+ Germany | 2003 |   313
+ Germany | 2002 |   188
+ Germany | 2001 |   116
+ Germany | 2000 |    60
+ Germany | 1999 |    30
+ Germany | 1998 |    35
+ Germany | 1997 |    18
+ Germany | 1996 |    12
+ Germany | 1995 |     7
+ Germany | 1994 |     7
+ Germany | 1993 |     3
+unenergy=# 
+unenergy=# select country, year,usage FROM solar WHERE country = 'Germany' JOIN year ON solar.year;
+ERROR:  syntax error at or near "JOIN"
+LINE 1: ..., year,usage FROM solar WHERE country = 'Germany' JOIN year ...
+                                                             ^
+unenergy=# select country, year,usage FROM solar WHERE country = 'Germany';
+ country | year | usage 
+---------+------+-------
+ Germany | 2014 | 36056
+ Germany | 2013 | 31010
+ Germany | 2012 | 26380
+ Germany | 2011 | 19599
+ Germany | 2010 | 11729
+ Germany | 2009 |  6584
+ Germany | 2008 |  4420
+ Germany | 2007 |  3075
+ Germany | 2006 |  2220
+ Germany | 2005 |  1282
+ Germany | 2004 |   557
+ Germany | 2003 |   313
+ Germany | 2002 |   188
+ Germany | 2001 |   116
+ Germany | 2000 |    60
+ Germany | 1999 |    30
+ Germany | 1998 |    35
+ Germany | 1997 |    18
+ Germany | 1996 |    12
+ Germany | 1995 |     7
+ Germany | 1994 |     7
+ Germany | 1993 |     3
+unenergy=# 
+unenergy=# select solar.country, solar.year, solar.usage FROM solar WHERE country = 'Germany';
+ country | year | usage 
+---------+------+-------
+ Germany | 2014 | 36056
+ Germany | 2013 | 31010
+ Germany | 2012 | 26380
+ Germany | 2011 | 19599
+ Germany | 2010 | 11729
+ Germany | 2009 |  6584
+ Germany | 2008 |  4420
+ Germany | 2007 |  3075
+ Germany | 2006 |  2220
+ Germany | 2005 |  1282
+ Germany | 2004 |   557
+ Germany | 2003 |   313
+ Germany | 2002 |   188
+ Germany | 2001 |   116
+ Germany | 2000 |    60
+ Germany | 1999 |    30
+ Germany | 1998 |    35
+ Germany | 1997 |    18
+ Germany | 1996 |    12
+ Germany | 1995 |     7
+ Germany | 1994 |     7
+ Germany | 1993 |     3
+unenergy=# 
+unenergy=# select solar.country, solar.year, solar.usage FROM solar WHERE country = 'Germany'
+unenergy-# select solar.country, solar.year, solar.usage FROM solar 
+unenergy-# JOIN wind on solar.
+unenergy-# 
+unenergy-# ;
+ERROR:  syntax error at or near "select"
+LINE 2: select solar.country, solar.year, solar.usage FROM solar
+        ^
+unenergy=# select solar.country, solar.year, solar.usage FROM solar WHERE country = 'Germany'                                                                                       select solar.country, solar.year, solar.usage FROM solar                                                                                                                            JOIN wind on solar.                                                                                                                                                                 ;q
+ERROR:  syntax error at or near "select"
+LINE 2: select solar.country, solar.year, solar.usage FROM solar
+        ^
+unenergy-# select solar.country, solar.year, solar.usage FROM solar WHERE country = 'Germany'
+unenergy-# JOIN wind ON solar.year;
+ERROR:  syntax error at or near "q"
+LINE 1: q
+        ^
+unenergy=# 
+unenergy=# select solar.country, solar.year, solar.usage FROM solar WHERE country = 'Germany' JOIN wind ON solar.year;                                                              ERROR:  syntax error at or near "JOIN"
+LINE 1: ... solar.usage FROM solar WHERE country = 'Germany' JOIN wind ...
+                                                             ^
+unenergy=# select solar.country, solar.year, solar.usage FROM solar WHERE country = 'Germany';
+ country | year | usage 
+---------+------+-------
+ Germany | 2014 | 36056
+ Germany | 2013 | 31010
+ Germany | 2012 | 26380
+ Germany | 2011 | 19599
+ Germany | 2010 | 11729
+ Germany | 2009 |  6584
+ Germany | 2008 |  4420
+ Germany | 2007 |  3075
+ Germany | 2006 |  2220
+ Germany | 2005 |  1282
+ Germany | 2004 |   557
+ Germany | 2003 |   313
+ Germany | 2002 |   188
+ Germany | 2001 |   116
+ Germany | 2000 |    60
+ Germany | 1999 |    30
+ Germany | 1998 |    35
+ Germany | 1997 |    18
+ Germany | 1996 |    12
+ Germany | 1995 |     7
+ Germany | 1994 |     7
+ Germany | 1993 |     3
+unenergy=# 
+unenergy=# select solar.country, solar.year, solar.usage FROM solar WHERE country = 'Germany'
+unenergy-# 
+unenergy=# 
+unenergy=# select solar.country, solar.year, solar.usage FROM solar JOIN wind ON solar.country = wind.country WHERE country = 'Germany';
+ERROR:  column reference "country" is ambiguous
+LINE 1: ...r JOIN wind ON solar.country = wind.country WHERE country = ...
+                                                             ^
+unenergy=# select solar.country, solar.year, solar.usage FROM solar JOIN wind ON solar.country = wind.country WHERE solar.country = 'Germany';
+ country | year | usage 
+---------+------+-------
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+unenergy=# 
+unenergy=# select solar.country, solar.year, solar.usage FROM solar JOIN wind ON solar.year = wind.year WHERE solar.country = 'Germany';
+ country | year | usage 
+---------+------+-------
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+unenergy=# 
+unenergy=# select solar.country, solar.year, solar.usage, wind.usage FROM solar JOIN wind ON solar.year = wind.year WHERE solar.country = 'Germany';
+ country | year | usage |      usage       
+---------+------+-------+------------------
+ Germany | 2014 | 36056 |              300
+ Germany | 2014 | 36056 |                3
+ Germany | 2014 | 36056 |            732.6
+ Germany | 2014 | 36056 |           183892
+ Germany | 2014 | 36056 |            32015
+ Germany | 2014 | 36056 |             1130
+ Germany | 2014 | 36056 |             8520
+ Germany | 2014 | 36056 |              507
+ Germany | 2014 | 36056 |              305
+ Germany | 2014 | 36056 |              101
+ Germany | 2014 | 36056 |            11234
+ Germany | 2014 | 36056 |             0.87
+ Germany | 2014 | 36056 |                8
+ Germany | 2014 | 36056 |             1.01
+ Germany | 2014 | 36056 |           273.45
+ Germany | 2014 | 36056 |            52013
+ Germany | 2014 | 36056 |             1070
+ Germany | 2014 | 36056 |                4
+ Germany | 2014 | 36056 |                6
+ Germany | 2014 | 36056 |             7.09
+ Germany | 2014 | 36056 |               96
+ Germany | 2014 | 36056 |             6201
+ Germany | 2014 | 36056 |             15.7
+ Germany | 2014 | 36056 |                1
+ Germany | 2014 | 36056 |            219.1
+ Germany | 2014 | 36056 |            12111
+ Germany | 2014 | 36056 |             7676
+ Germany | 2014 | 36056 |            152.1
+ Germany | 2014 | 36056 |              256
+ Germany | 2014 | 36056 |            116.3
+ Germany | 2014 | 36056 |              397
+ Germany | 2014 | 36056 |             1500
+ Germany | 2014 | 36056 |             2216
+ Germany | 2014 | 36056 |              846
+ Germany | 2014 | 36056 |             2214
+unenergy=# 
+unenergy=# select solar.country, solar.year, solar.usage, wind.usage FROM solar JOIN wind ON solar.country = wind.country WHERE solar.country = 'Germany';
+ country | year | usage | usage 
+---------+------+-------+-------
+ Germany | 2014 | 36056 | 57357
+ Germany | 2014 | 36056 | 51708
+ Germany | 2014 | 36056 | 50670
+ Germany | 2014 | 36056 | 48883
+ Germany | 2014 | 36056 | 37793
+ Germany | 2014 | 36056 | 38647
+ Germany | 2014 | 36056 | 40574
+ Germany | 2014 | 36056 | 39713
+ Germany | 2014 | 36056 | 30710
+ Germany | 2014 | 36056 | 27229
+ Germany | 2014 | 36056 | 25509
+ Germany | 2014 | 36056 | 18713
+ Germany | 2014 | 36056 | 15856
+ Germany | 2014 | 36056 | 10456
+ Germany | 2014 | 36056 |  9352
+ Germany | 2014 | 36056 |  5528
+ Germany | 2014 | 36056 |  4593
+ Germany | 2014 | 36056 |  3034
+ Germany | 2014 | 36056 |  2078
+ Germany | 2014 | 36056 |  1712
+ Germany | 2014 | 36056 |  1428
+ Germany | 2014 | 36056 |   674
+ Germany | 2014 | 36056 |   291
+ Germany | 2014 | 36056 |   215
+ Germany | 2013 | 31010 | 57357
+ Germany | 2013 | 31010 | 51708
+ Germany | 2013 | 31010 | 50670
+ Germany | 2013 | 31010 | 48883
+ Germany | 2013 | 31010 | 37793
+ Germany | 2013 | 31010 | 38647
+ Germany | 2013 | 31010 | 40574
+ Germany | 2013 | 31010 | 39713
+ Germany | 2013 | 31010 | 30710
+ Germany | 2013 | 31010 | 27229
+ Germany | 2013 | 31010 | 25509
+ Germany | 2013 | 31010 | 18713
+ Germany | 2013 | 31010 | 15856
+ Germany | 2013 | 31010 | 10456
+ Germany | 2013 | 31010 |  9352
+ Germany | 2013 | 31010 |  5528
+ Germany | 2013 | 31010 |  4593
+ Germany | 2013 | 31010 |  3034
+ Germany | 2013 | 31010 |  2078
+ Germany | 2013 | 31010 |  1712
+ Germany | 2013 | 31010 |  1428
+ Germany | 2013 | 31010 |   674
+ Germany | 2013 | 31010 |   291
+ Germany | 2013 | 31010 |   215
+ Germany | 2012 | 26380 | 57357
+ Germany | 2012 | 26380 | 51708
+ Germany | 2012 | 26380 | 50670
+ Germany | 2012 | 26380 | 48883
+ Germany | 2012 | 26380 | 37793
+ Germany | 2012 | 26380 | 38647
+ Germany | 2012 | 26380 | 40574
+ Germany | 2012 | 26380 | 39713
+ Germany | 2012 | 26380 | 30710
+ Germany | 2012 | 26380 | 27229
+ Germany | 2012 | 26380 | 25509
+ Germany | 2012 | 26380 | 18713
+ Germany | 2012 | 26380 | 15856
+ Germany | 2012 | 26380 | 10456
+ Germany | 2012 | 26380 |  9352
+ Germany | 2012 | 26380 |  5528
+ Germany | 2012 | 26380 |  4593
+ Germany | 2012 | 26380 |  3034
+ Germany | 2012 | 26380 |  2078
+ Germany | 2012 | 26380 |  1712
+ Germany | 2012 | 26380 |  1428
+ Germany | 2012 | 26380 |   674
+ Germany | 2012 | 26380 |   291
+ Germany | 2012 | 26380 |   215
+unenergy=# 
+unenergy=# select solar.country, solar.year, solar.usage, FROM solar JOIN wind ON solar.country = wind.country WHERE solar.country = 'Germany'
+unenergy-# 
+unenergy-# ;
+ERROR:  syntax error at or near "FROM"
+LINE 1: select solar.country, solar.year, solar.usage, FROM solar JO...
+                                                       ^
+unenergy=# select solar.country, solar.year, solar.usage FROM solar JOIN wind ON solar.country = wind.country WHERE solar.country = 'Germany';                          
+ country | year | usage 
+---------+------+-------
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+unenergy=# 
+unenergy=# select solar.country, solar.year, solar.usage FROM solar JOIN wind ON solar.country = wind.country WHERE solar.country = 'Germany';q
+ country | year | usage 
+---------+------+-------
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+unenergy-# 
+unenergy-# select solar.country, solar.year, solar.usage FROM solar JOIN wind ON solar.country = wind.country WHERE solar.country = 'Germany';q
+ERROR:  syntax error at or near "q"
+LINE 1: q
+        ^
+unenergy-# q
+unenergy-# 
+unenergy-# 
+unenergy-# select solar.country, solar.year, solar.usage FROM solar JOIN wind ON solar.country = wind.country WHERE solar.country = 'Germany' DESC NULLS LIST LAST;
+ERROR:  syntax error at or near "q"
+LINE 1: q
+        ^
+unenergy=# 
+unenergy=# 
+unenergy=# q                                                                                                                                                                        select solar.country, solar.year, solar.usage FROM solar JOIN wind ON solar.country = wind.country WHERE solar.country = 'Germany' DESC NULLS LIST LAST;
+ERROR:  syntax error at or near "q"
+LINE 1: q
+        ^
+unenergy=# select solar.country, solar.year, solar.usage FROM solar JOIN wind ON solar.country = wind.country WHERE solar.country = 'Germany' DESC NULLS LIST LAST;                
+ERROR:  syntax error at or near "DESC"
+LINE 1: ...ry = wind.country WHERE solar.country = 'Germany' DESC NULLS...
+                                                             ^
+unenergy=# select solar.country, solar.year, solar.usage FROM solar JOIN wind ON solar.country = wind.country WHERE solar.country = 'Germany';
+ country | year | usage 
+---------+------+-------
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+unenergy=# 
+unenergy=# 
+unenergy=# select country, year, usage FROM solar JOIN wind ON solar.country = wind.country WHERE solar.country = 'Germany';
+ERROR:  column reference "country" is ambiguous
+LINE 1: select country, year, usage FROM solar JOIN wind ON solar.co...
+               ^
+unenergy=# select solar.country, solar.year, solar.usage FROM solar JOIN wind ON solar.country = wind.country WHERE solar.country = 'Germany';
+ country | year | usage 
+---------+------+-------
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2013 | 31010
+ Germany | 2013 | 31010
+ Germany | 2013 | 31010
+ Germany | 2013 | 31010
+ Germany | 2013 | 31010
+ Germany | 2013 | 31010
+ Germany | 2013 | 31010
+ Germany | 2013 | 31010
+ Germany | 2013 | 31010
+ Germany | 2013 | 31010
+ Germany | 2013 | 31010
+ Germany | 2013 | 31010
+ Germany | 2013 | 31010
+ Germany | 2013 | 31010
+ Germany | 2013 | 31010
+ Germany | 2013 | 31010
+ Germany | 2013 | 31010
+ Germany | 2013 | 31010
+ Germany | 2013 | 31010
+ Germany | 2013 | 31010
+ Germany | 2013 | 31010
+ Germany | 2013 | 31010
+ Germany | 2013 | 31010
+ Germany | 2013 | 31010
+ Germany | 2012 | 26380
+ Germany | 2012 | 26380
+ Germany | 2012 | 26380
+ Germany | 2012 | 26380
+ Germany | 2012 | 26380
+ Germany | 2012 | 26380
+ Germany | 2012 | 26380
+ Germany | 2012 | 26380
+ Germany | 2012 | 26380
+ Germany | 2012 | 26380
+ Germany | 2012 | 26380
+ Germany | 2012 | 26380
+ Germany | 2012 | 26380
+ Germany | 2012 | 26380
+ Germany | 2012 | 26380
+ Germany | 2012 | 26380
+ Germany | 2012 | 26380
+ Germany | 2012 | 26380
+unenergy=# 
+unenergy=# select solar.country, solar.year, solar.usage FROM solar JOIN wind ON solar.country = wind.country WHERE solar.country = 'Germany';
+ country | year | usage 
+---------+------+-------
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+ Germany | 2014 | 36056
+unenergy=# 
+unenergy=# select solar.country, solar.year, solar.usage, wind.usage FROM solar JOIN wind ON solar.country = wind.country WHERE solar.country = 'Germany';
+ country | year | usage | usage 
+---------+------+-------+-------
+ Germany | 2014 | 36056 | 57357
+ Germany | 2014 | 36056 | 51708
+ Germany | 2014 | 36056 | 50670
+ Germany | 2014 | 36056 | 48883
+ Germany | 2014 | 36056 | 37793
+ Germany | 2014 | 36056 | 38647
+ Germany | 2014 | 36056 | 40574
+ Germany | 2014 | 36056 | 39713
+ Germany | 2014 | 36056 | 30710
+ Germany | 2014 | 36056 | 27229
+ Germany | 2014 | 36056 | 25509
+ Germany | 2014 | 36056 | 18713
+ Germany | 2014 | 36056 | 15856
+ Germany | 2014 | 36056 | 10456
+ Germany | 2014 | 36056 |  9352
+ Germany | 2014 | 36056 |  5528
+ Germany | 2014 | 36056 |  4593
+ Germany | 2014 | 36056 |  3034
+ Germany | 2014 | 36056 |  2078
+ Germany | 2014 | 36056 |  1712
+ Germany | 2014 | 36056 |  1428
+ Germany | 2014 | 36056 |   674
+unenergy=# 
+unenergy=# 
+unenergy=# select solar.country, solar.year, wind.usage, solar.usage FROM solar JOIN wind ON solar.country = wind.country WHERE solar.country = 'Germany';
+ country | year | usage | usage 
+---------+------+-------+-------
+ Germany | 2014 | 57357 | 36056
+ Germany | 2014 | 51708 | 36056
+ Germany | 2014 | 50670 | 36056
+ Germany | 2014 | 48883 | 36056
+ Germany | 2014 | 37793 | 36056
+ Germany | 2014 | 38647 | 36056
+ Germany | 2014 | 40574 | 36056
+ Germany | 2014 | 39713 | 36056
+ Germany | 2014 | 30710 | 36056
+ Germany | 2014 | 27229 | 36056
+ Germany | 2014 | 25509 | 36056
+ Germany | 2014 | 18713 | 36056
+ Germany | 2014 | 15856 | 36056
+ Germany | 2014 | 10456 | 36056
+ Germany | 2014 |  9352 | 36056
+ Germany | 2014 |  5528 | 36056
+ Germany | 2014 |  4593 | 36056
+ Germany | 2014 |  3034 | 36056
+ Germany | 2014 |  2078 | 36056
+ Germany | 2014 |  1712 | 36056
+ Germany | 2014 |  1428 | 36056
+ Germany | 2014 |   674 | 36056
+unenergy=# 
+unenergy=# select solar.country, solar.year, wind.usage, solar.usage FROM solar JOIN wind ON solar.year = wind.year WHERE solar.country = 'Germany';
+ country | year |      usage       | usage 
+---------+------+------------------+-------
+ Germany | 2014 |              300 | 36056
+ Germany | 2014 |                3 | 36056
+ Germany | 2014 |            732.6 | 36056
+ Germany | 2014 |           183892 | 36056
+ Germany | 2014 |            32015 | 36056
+ Germany | 2014 |             1130 | 36056
+ Germany | 2014 |             8520 | 36056
+ Germany | 2014 |              507 | 36056
+ Germany | 2014 |              305 | 36056
+ Germany | 2014 |              101 | 36056
+ Germany | 2014 |            11234 | 36056
+ Germany | 2014 |             0.87 | 36056
+ Germany | 2014 |                8 | 36056
+ Germany | 2014 |             1.01 | 36056
+ Germany | 2014 |           273.45 | 36056
+ Germany | 2014 |            52013 | 36056
+ Germany | 2014 |             1070 | 36056
+ Germany | 2014 |                4 | 36056
+ Germany | 2014 |                6 | 36056
+ Germany | 2014 |             7.09 | 36056
+ Germany | 2014 |               96 | 36056
+ Germany | 2014 |             6201 | 36056
+ Germany | 2014 |             15.7 | 36056
+ Germany | 2014 |                1 | 36056
+ Germany | 2014 |            219.1 | 36056
+ Germany | 2014 |            12111 | 36056
+ Germany | 2014 |             7676 | 36056
+ Germany | 2014 |            152.1 | 36056
+ Germany | 2014 |              256 | 36056
+ Germany | 2014 |            116.3 | 36056
+ Germany | 2014 |              397 | 36056
+ Germany | 2014 |             1500 | 36056
+ Germany | 2014 |             2216 | 36056
+ Germany | 2014 |              846 | 36056
+ Germany | 2014 |             2214 | 36056
+ Germany | 2014 |             57.2 | 36056
+ Germany | 2014 |             5797 | 36056
+ Germany | 2014 |             1924 | 36056
+ Germany | 2014 |             6426 | 36056
+ Germany | 2014 |              3.2 | 36056
+ Germany | 2014 |            1.665 | 36056
+ Germany | 2014 |               80 | 36056
+ Germany | 2014 |              639 | 36056
+ Germany | 2014 |              141 | 36056
+ Germany | 2014 |             1146 | 36056
+ Germany | 2014 |               17 | 36056
+ Germany | 2014 |               13 | 36056
+ Germany | 2014 |              2.4 | 36056
+ Germany | 2014 |             5038 | 36056
+ Germany | 2014 |              119 | 36056
+ Germany | 2014 |            15178 | 36056
+ Germany | 2014 |                6 | 36056
+ Germany | 2014 |             5140 | 36056
+ Germany | 2014 |              358 | 36056
+ Germany | 2014 |                0 | 36056
+ Germany | 2014 |            27057 | 36056
+ Germany | 2014 |                8 | 36056
+ Germany | 2014 |              657 | 36056
+ Germany | 2014 |              398 | 36056
+ Germany | 2014 |               54 | 36056
+ Germany | 2014 |             3689 | 36056
+ Germany | 2014 |            57357 | 36056
+ Germany | 2014 |            17249 | 36056
+ Germany | 2014 |             1107 | 36056
+ Germany | 2014 |              4.3 | 36056
+ Germany | 2014 |             5.69 | 36056
+ Germany | 2014 |           34.488 | 36056
+ Germany | 2014 |              392 | 36056
+ Germany | 2014 |              604 | 36056
+ Germany | 2014 |             1315 | 36056
+ Germany | 2014 |             79.7 | 36056
+ Germany | 2014 |            243.2 | 36056
+ Germany | 2014 |            13079 | 36056
+ Germany | 2014 |              477 | 36056
+ Germany | 2014 |              182 | 36056
+ Germany | 2014 |               32 | 36056
+ Germany | 2014 |              730 | 36056
+ Germany | 2014 |              735 | 36056
+ Germany | 2014 |               58 | 36056
+ Germany | 2014 |           156078 | 36056
+ Germany | 2014 |             1443 | 36056
+ Germany | 2014 |            22538 | 36056
+ Germany | 2014 |            65.67 | 36056
+ Germany | 2014 |             1331 | 36056
+ Germany | 2014 |            12211 | 36056
+ Germany | 2014 |              2.2 | 36056
+ Germany | 2014 |                8 | 36056
+ Germany | 2014 |             4614 | 36056
+ Germany | 2014 |               11 | 36056
+ Germany | 2014 |                4 | 36056
+ Germany | 2014 |                2 | 36056
+ Germany | 2014 |             3846 | 36056
+ Germany | 2014 |            10252 | 36056
+ Germany | 2014 |            138.4 | 36056
+ Germany | 2014 |                4 | 36056
+ Germany | 2014 |              730 | 36056
+ Germany | 2013 |               92 | 31010
+unenergy=# 
+unenergy=# select solar.country, solar.year, wind.usage, solar.usage FROM solar JOIN wind ON solar.country = wind.country WHERE solar.country = 'Germany';
+ country | year | usage | usage 
+---------+------+-------+-------
+ Germany | 2014 | 57357 | 36056
+ Germany | 2014 | 51708 | 36056
+ Germany | 2014 | 50670 | 36056
+ Germany | 2014 | 48883 | 36056
+ Germany | 2014 | 37793 | 36056
+ Germany | 2014 | 38647 | 36056
+ Germany | 2014 | 40574 | 36056
+ Germany | 2014 | 39713 | 36056
+ Germany | 2014 | 30710 | 36056
+ Germany | 2014 | 27229 | 36056
+ Germany | 2014 | 25509 | 36056
+ Germany | 2014 | 18713 | 36056
+ Germany | 2014 | 15856 | 36056
+ Germany | 2014 | 10456 | 36056
+ Germany | 2014 |  9352 | 36056
+ Germany | 2014 |  5528 | 36056
+ Germany | 2014 |  4593 | 36056
+ Germany | 2014 |  3034 | 36056
+ Germany | 2014 |  2078 | 36056
+ Germany | 2014 |  1712 | 36056
+ Germany | 2014 |  1428 | 36056
+ Germany | 2014 |   674 | 36056
+ Germany | 2014 |   291 | 36056
+ Germany | 2014 |   215 | 36056
+ Germany | 2013 | 57357 | 31010
+ Germany | 2013 | 51708 | 31010
+ Germany | 2013 | 50670 | 31010
+ Germany | 2013 | 48883 | 31010
+ Germany | 2013 | 37793 | 31010
+ Germany | 2013 | 38647 | 31010
+ Germany | 2013 | 40574 | 31010
+ Germany | 2013 | 39713 | 31010
+ Germany | 2013 | 30710 | 31010
+unenergy=# 
+unenergy=# select solar.country, solar.year, wind.usage, solar.usage FROM solar JOIN wind ON solar.country = wind.country WHERE solar.country = 'Germany' DESC NULLS LAST;
+ERROR:  syntax error at or near "DESC"
+LINE 1: ...ry = wind.country WHERE solar.country = 'Germany' DESC NULLS...
+                                                             ^
+unenergy=# select solar.country, solar.year, wind.usage, solar.usage FROM solar JOIN wind ON solar.country = wind.country WHERE solar.country = 'Germany';
+ country | year | usage | usage 
+---------+------+-------+-------
+ Germany | 2014 | 57357 | 36056
+ Germany | 2014 | 51708 | 36056
+ Germany | 2014 | 50670 | 36056
+ Germany | 2014 | 48883 | 36056
+ Germany | 2014 | 37793 | 36056
+ Germany | 2014 | 38647 | 36056
+ Germany | 2014 | 40574 | 36056
+ Germany | 2014 | 39713 | 36056
+ Germany | 2014 | 30710 | 36056
+ Germany | 2014 | 27229 | 36056
+ Germany | 2014 | 25509 | 36056
+ Germany | 2014 | 18713 | 36056
+ Germany | 2014 | 15856 | 36056
+ Germany | 2014 | 10456 | 36056
+ Germany | 2014 |  9352 | 36056
+ Germany | 2014 |  5528 | 36056
+ Germany | 2014 |  4593 | 36056
+ Germany | 2014 |  3034 | 36056
+ Germany | 2014 |  2078 | 36056
+ Germany | 2014 |  1712 | 36056
+ Germany | 2014 |  1428 | 36056
+ Germany | 2014 |   674 | 36056
+unenergy=# 
+unenergy=# select solar.country, solar.year, wind.usage, solar.usage FROM solar JOIN wind ON solar.country = wind.country WHERE solar.country = 'Germany';
+ country | year | usage | usage 
+---------+------+-------+-------
+ Germany | 2014 | 57357 | 36056
+ Germany | 2014 | 51708 | 36056
+ Germany | 2014 | 50670 | 36056
+ Germany | 2014 | 48883 | 36056
+ Germany | 2014 | 37793 | 36056
+ Germany | 2014 | 38647 | 36056
+ Germany | 2014 | 40574 | 36056
+ Germany | 2014 | 39713 | 36056
+ Germany | 2014 | 30710 | 36056
+ Germany | 2014 | 27229 | 36056
+ Germany | 2014 | 25509 | 36056
+ Germany | 2014 | 18713 | 36056
+ Germany | 2014 | 15856 | 36056
+ Germany | 2014 | 10456 | 36056
+ Germany | 2014 |  9352 | 36056
+ Germany | 2014 |  5528 | 36056
+ Germany | 2014 |  4593 | 36056
+ Germany | 2014 |  3034 | 36056
+ Germany | 2014 |  2078 | 36056
+ Germany | 2014 |  1712 | 36056
+ Germany | 2014 |  1428 | 36056
+ Germany | 2014 |   674 | 36056
+ Germany | 2014 |   291 | 36056
+ Germany | 2014 |   215 | 36056
+ Germany | 2013 | 57357 | 31010
+ Germany | 2013 | 51708 | 31010
+ Germany | 2013 | 50670 | 31010
+ Germany | 2013 | 48883 | 31010
+ Germany | 2013 | 37793 | 31010
+ Germany | 2013 | 38647 | 31010
+ Germany | 2013 | 40574 | 31010
+ Germany | 2013 | 39713 | 31010
+ Germany | 2013 | 30710 | 31010
+ Germany | 2013 | 27229 | 31010
+ Germany | 2013 | 25509 | 31010
+ Germany | 2013 | 18713 | 31010
+ Germany | 2013 | 15856 | 31010
+ Germany | 2013 | 10456 | 31010
+ Germany | 2013 |  9352 | 31010
+ Germany | 2013 |  5528 | 31010
+ Germany | 2013 |  4593 | 31010
+ Germany | 2013 |  3034 | 31010
+ Germany | 2013 |  2078 | 31010
+ Germany | 2013 |  1712 | 31010
+ Germany | 2013 |  1428 | 31010
+ Germany | 2013 |   674 | 31010
+ Germany | 2013 |   291 | 31010
+ Germany | 2013 |   215 | 31010
+ Germany | 2012 | 57357 | 26380
+ Germany | 2012 | 51708 | 26380
+ Germany | 2012 | 50670 | 26380
+ Germany | 2012 | 48883 | 26380
+ Germany | 2012 | 37793 | 26380
+ Germany | 2012 | 38647 | 26380
+ Germany | 2012 | 40574 | 26380
+ Germany | 2012 | 39713 | 26380
+ Germany | 2012 | 30710 | 26380
+ Germany | 2012 | 27229 | 26380
+ Germany | 2012 | 25509 | 26380
+ Germany | 2012 | 18713 | 26380
+ Germany | 2012 | 15856 | 26380
+ Germany | 2012 | 10456 | 26380
+ Germany | 2012 |  9352 | 26380
+ Germany | 2012 |  5528 | 26380
+ Germany | 2012 |  4593 | 26380
+ Germany | 2012 |  3034 | 26380
+ Germany | 2012 |  2078 | 26380
+ Germany | 2012 |  1712 | 26380
+ Germany | 2012 |  1428 | 26380
+ Germany | 2012 |   674 | 26380
+ Germany | 2012 |   291 | 26380
+ Germany | 2012 |   215 | 26380
+ Germany | 2011 | 57357 | 19599
+ Germany | 2011 | 51708 | 19599
+ Germany | 2011 | 50670 | 19599
+ Germany | 2011 | 48883 | 19599
+ Germany | 2011 | 37793 | 19599
+ Germany | 2011 | 38647 | 19599
+ Germany | 2011 | 40574 | 19599
+ Germany | 2011 | 39713 | 19599
+ Germany | 2011 | 30710 | 19599
+ Germany | 2011 | 27229 | 19599
+ Germany | 2011 | 25509 | 19599
+ Germany | 2011 | 18713 | 19599
+ Germany | 2011 | 15856 | 19599
+ Germany | 2011 | 10456 | 19599
+ Germany | 2011 |  9352 | 19599
+ Germany | 2011 |  5528 | 19599
+ Germany | 2011 |  4593 | 19599
+unenergy=# 
+unenergy=# select solar.country, solar.year, wind.usage, solar.usage FROM solar JOIN wind ON solar.country = wind.country WHERE solar.country = 'Germany';
+ country | year | usage | usage 
+---------+------+-------+-------
+ Germany | 2014 | 57357 | 36056
+ Germany | 2014 | 51708 | 36056
+ Germany | 2014 | 50670 | 36056
+ Germany | 2014 | 48883 | 36056
+ Germany | 2014 | 37793 | 36056
+ Germany | 2014 | 38647 | 36056
+ Germany | 2014 | 40574 | 36056
+ Germany | 2014 | 39713 | 36056
+ Germany | 2014 | 30710 | 36056
+ Germany | 2014 | 27229 | 36056
+ Germany | 2014 | 25509 | 36056
+ Germany | 2014 | 18713 | 36056
+ Germany | 2014 | 15856 | 36056
+ Germany | 2014 | 10456 | 36056
+ Germany | 2014 |  9352 | 36056
+ Germany | 2014 |  5528 | 36056
+ Germany | 2014 |  4593 | 36056
+ Germany | 2014 |  3034 | 36056
+ Germany | 2014 |  2078 | 36056
+ Germany | 2014 |  1712 | 36056
+ Germany | 2014 |  1428 | 36056
+ Germany | 2014 |   674 | 36056
+unenergy=# 
+unenergy=# \dt solar
+              List of relations
+ Schema | Name  | Type  |       Owner        
+--------+-------+-------+--------------------
+ public | solar | table | MaijaLiisaEhlinger
+(1 row)
+
+unenergy=# \d solar
+             Table "public.solar"
+  Column   |         Type          | Modifiers 
+-----------+-----------------------+-----------
+ country   | character varying(80) | 
+ commodity | character varying(80) | 
+ year      | integer               | 
+ unit      | character varying(80) | 
+ usage     | double precision      | 
+ footnotes | character varying(20) | 
+
+unenergy=# \d wind
+             Table "public.wind"
+ Column  |         Type          | Modifiers 
+---------+-----------------------+-----------
+ country | character varying(40) | 
+ type    | character varying(40) | 
+ year    | integer               | 
+ unit    | character varying(40) | 
+ usage   | double precision      | 
+ notes   | character varying(40) | 
+
+unenergy=# 

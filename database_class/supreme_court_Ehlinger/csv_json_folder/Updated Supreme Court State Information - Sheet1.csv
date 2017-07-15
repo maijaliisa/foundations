@@ -1,0 +1,65 @@
+Docket Number,State,Date Argued,Date Decided ,Area*,Decision,Status,Court Leaning,Previous Court,City,Latitude,Longitude
+14-1055,California,06/28/16,01/18/17,Economic Activity,8-0,affirmed,Major Majority,9th Circuit,"Pasadena, California",34.147785,-118.144516
+14-1538,Wisconsin,06/27/16,02/22/17,Economic Activity,7-0,reversed,Major Majority,District Court for the Western District of Wisconsin,"Madison, Wisconsin",43.073052,-89.40123
+14-9496,Illinois,01/15/16,03/21/17,Civil Rights,6-2,affirmed,Major Majority,7th Circuit,"Joilet, Illinois",41.525031,-88.081725
+15-118,Texas,10/11/16,06/26/17,Immigration,NaN,vacated,Vacated,5th Circuit,"San Antonio, Texas",29.424122,-98.493628
+15-214,Wisconsin,01/15/16,06/23/17,Economic Activity,5-3,affirmed,Liberal,Wisconsin Court Of Appeals District III,"St. Croix County, Wisconsin",45.049784,-92.387569
+15-423,"Washington, D.C.",06/28/16,05/01/17,Economic Activity,8-0,reversed,Major Majority,United States District Court for the District of Columbia,"Washington, D.C.",38.907192,-77.036871
+15-457,California,01/15/16,06/12/17,Economic Activity,8-0,reversed,Major Majority,9th Circuit,"Seattle, Washington",47.606209,-122.332071
+15-497,Michigan,06/28/16,02/22/17,Civil Rights,8-0,affirmed,Major Majority,6th Circuit ,"Detriot, Michigan ",42.331427,-83.045754
+15-513,Louisiana,11/01/16,Pending,Economic Activity,8-0,reversed,Major Majority,5th Circuit,"Gulf Port, Mississippi",30.36742,-89.092816
+15-537,Puerto Rico,10/04/16,11/29/16,Criminal Procedure,8-0,reversed,Major Majority,1st Circuit,Puerto Rico,18.220833,-66.590149
+15-577,Missouri,04/19/17,06/26/17,First Amendment ,7–2 ,affirmed,Conservative,8th Circuit,"Columumbia, Missouri",38.951705,-92.334072
+15-606,Colorado,10/11/16,03/06/17,Civil Rights ,5-3,affirmed,Liberal,Supreme Court for the State of Colorado,"Denver, Colorado",39.739236,-104.990251
+15-628,California,10/05/16,12/06/17,Economic Activity,8-0,reversed,Major Majority,9th Circuit,"San Carlos, California ",37.507159,-122.260522
+15-649,New Jersey,12/07/16,03/27/17,Economic Activity,6-2,reversed,Liberal,3rd Circuit,"Wilmington, Deleware",39.739072,-75.539788
+15-680,Virginia,12/05/16,03/01/17,Civil Rights,8-0,affirmed,Major Majority,District Court of Virginia,"Richmond, Virginia",37.540725,-77.436048
+15-777,California,10/11/16,12/06/16,Economic Activity,8-0,affirmed,Major Majority,Court of Appeals for the Federal Court,"San Francisco, California",37.774929,-122.419416
+15-797,Texas,11/29/16,03/28/17,Criminal Procedure,5-3,Affirmed,Liberal,Criminal Court of Appeals of Texas,"Houston, Texas",29.760427,-95.369803
+15-827,Colorado,01/11/17,03/22/17,Civil Rights,8-0,Vacated and Remanded,Major Majority,10th Circuit,"Castle Rock, Colorado",39.372212,-104.85609
+15-866,Tennessee,10/31/16,03/22/17,Economic Activity,6-2,Affirmed ,Mixed,6th Circuit,"Memphis, Tennessee",35.149534,-90.04898
+15-927,"Washington, D.C.",11/01/16,03/21/17,Economic Activity,7-1,Affirmed,Major Majority,Court of Appeals for the Federal Court,"Philadelphia, Pennyslvania",39.952584,-75.165222
+15-1031,Arizona,03/20/17,05/15/17,Economic Activity,8-0,Reversed and Remanded,Major Majority,Supreme Court of the State of Arizona,"Pheonix, Arizona",33.453821,-112.069434
+15-1039,"Washington, D.C.",04/26/17,06/12/17,Economic Activity,8-0,"Vacated in part, Reversed in part and Remanded",Major Majority,Federal Court of Appeals ,"Thousand Oaks, California",34.170561,-118.837594
+15-1111,Florida,11/08/16,05/01/17,Economic Activity,5-3,Vacated and Remanded,Liberal,11th Circuit,"Miami, Florida",25.76168,-80.19179
+15-1189,"Washington, D.C.",03/21/17,05/30/17,Economic Activity,8-0,Reversed and Remanded on international exhaustion,Major Majority,Federal Court of Appeals ,"Chicago, Illinois",41.878114,-87.629798
+15-1191,Virginia,11/09/16,07/12/17,Immigration,7-1,"affirmed in part, reversed in part, and remanded,",Major Majority,2nd Circuit,"New York, New York",40.712784,-74.005941
+15-1194,North Carolina ,02/19/17,06/19/17,First Amendment ,8-0,"Reversed and remanded,",Major Majority,Supreme Court of North Carolina,"Durham, North Carolina",35.994033,-78.898619
+15-1204,California,06/20/16,11/30/16,Immigration,Pending,Pending,Pending,9th Circuit,"Pasadena, California",34.147785,-118.144516
+15-1248,Arizona,02/20/17,04/03/17,Civil Rights ,7-1,Vacated and remanded,Major Majority,9th Circuit,"Pheonix, Arizona",33.448377,-112.074037
+15-1251,"Washington, D.C.",11/07/17,03/21/17,Employment,6-2,Affirmed,Major Majority,Court of Appeals of DC,"Washington, D.C.",38.907192,-77.036871
+15-1256,Colorado,01/09/17,04/19/17,Crime,6-1,Affirmed,Major Majority,Colorado Supreme Court,"Broomfield, Colorado",39.920541,-105.08665
+15-1262,North Carolina ,12/05/17,05/22/17,Civil Rights,5-3,Affirmed,Liberal,District Court of the Middle District of North Carolina,"Raleigh, North Carolina",35.77959,-78.638179
+15-1293,"Washington, D.C.",01/18/17,06/19/17,First Amendment ,8-0,Affirmed,Major Majority,Court of Appeals for the Federal Court,"Pittsburgh, Pennyslvania",40.440625,-79.995886
+15-1358,New York,01/18/17,06/19/17,Due Process,4-2,Affirmed,Conservative,2nd Circuit,"Brooklyn, New York",40.678178,-73.944158
+15-1391,New York,01/10/17,03/29/17,Economic Activity,8-0,Reversed,Major Majority,2nd Circuit,"New York, New York",40.712784,-74.005941
+15-1406,Arizona,01/10/17,04/18/17,Miscellaneous,8-0,Reversed and remanded,Major Majority,9th Circuit,"Pasadena, California",34.147785,-118.144516
+15-1498,California,01/17/17,Pending,Due Process,Pending,Pending,Pending,9th Circuit,"Pasadena, California",34.08368,-118.09456
+15-1500,Connecticut,01/09/17,04/25/17,Civil Rights,8-0,Reversed and remanded,Major Majority,Connecticut Supreme Court,"Norwalk, Connecticut",41.06391,-73.23594
+15-1503,"Washington, D.C.",03/29/17,06/22/17,Criminal Procedure,6-2,Affirmed,Conservative,District of Columbia Court of Appeals,"Washington, D.C.",38.53392,-77.01072
+15-5991,California,08/04/16,12/12/16,Economic Activity,8-0,Vacated and Remanded,Major Majority,9th Circuit,"Los Angeles, California",34.03187,-118.14291
+15-7250,Florida,08/11/16,04/19/17,Criminal Procedure,6-2,Reversed and Remanded,Major Majority,7th Circuit,"Miami, Florida",25.46424,-80.11328
+15-8049,Texas,08/05/16,02/22/17,Criminal Procedure,6-2,Reversed and remanded,Mixed,5th Circuit,"Houston, Texas",29.454,-95.22029
+15-8544,Florida,11/28/16,03/06/17,Criminal Procedure,7-0,Affirmed,Major Majority,11th Circuit,"Miami, Florida",25.46424,-80.11328
+15-9260,Iowa,02/28/17,04/03/17,Criminal Procedure,8-0,Reversed and Remanded,Major Majority,8th Circuit,"Sioux City, Iowa",42.29126,-96.21479
+16-32,Kentucky,10/28/16,05/15/17,Economic Activity,7-1,affirmed,Major Majority,Kentucky Supreme Court,"Lexington, Kentucky",38.00556,-84.12458
+16-54,"Washington, D.C.",10/28/16,05/30/17,Immigration,8-0,affirmed,Major Majority,6th Circuit,"Cincinnati, Ohio",39.103118,-84.51202
+16-74,Illinois,12/02/16,06/05/16,Economic Activity,8-0,affirmed,Major Majority,7th Circuit,"Downers Grove, Illinois",41.808919,-88.011175
+16-142,Tennessee,12/09/16,06/05/16,Criminal Procedure,8-0,"affirmed part, reversed part",Major Majority,6th Circuit,"Chattanooga, Tennessee",35.04563,-85.30968
+16-149,Missouri,03/01/17,04/18/17,Criminal Procedure,8-0,Affirmed,Major Majority,Supreme Court of Missouri,"St. Louis, Missouri",38.627003,-90.199404
+16-240,Massachusetts,04/19/17,06/22/17,Criminal Procedure,7–2 ,Reversed,can not tell,Supreme Court of Massachusetts ,"Dorchester, Massachusetts",42.30163,-71.067605
+16-254,Texas,02/12/17,03/22/17,Economic Activity ,8-0,Affirmed,Major Majority,14th Court of Appeals of Texas,"Galveston County, Texas",29.37635,-94.852064
+16-309,Ohio,04/26/17,06/22/17,Civil Rights,9-0,Affirmed,Major Majority,6th Circuit,"Akron, Ohio",41.081445,-81.519005
+16-327,Tennessee,03/28/17,06/23/17,Criminal Procedure,6-2,Reversed,can not tell,6th Circuit,"Memphis, Tennessee",35.149534,-90.04898
+16-341,Delaware,03/27/17,05/22/17,Interstate Relations,8-0,Affirmed,Major Majority,Court of Appeals for the Federal Court,"Dover, Delaware",39.158168,-75.524368
+16-348,Alabama,01/17/17,05/15/17,Private Action,5-3,Affirmed ,Conservative,11th Circuit,"Mobile, Alabama",30.695366,-88.039891
+16-349,Texas,01/12/17,04/18/17,Economic Activity ,9-0,Reversed,Major Majority,4th Circuit,"Dallas, Texas",32.776664,-96.796988
+16-369,California,03/17/17,05/30/17,Civil Rights,8-0,Affirmed ,Major Majority,9th Circuit,"Los Angeles, California",34.052234,-118.243685
+16-373,California,04/17/17,06/26/17,Economic Activity ,5-4,Affirmed ,Conservative,2nd Circuit,"New York, New York",36.102371,-115.174556
+16-399,"Washington, D.C.",04/17/17,06/23/17,Civil Rights,7-2,Reversed,Liberal,District of Columbia Court of Appeals,"Washington, D.C.",38.907192,-77.036871
+16-405,Montana,04/25/17,05/30/17,Due Process,8-1,Reversed,Major Majority,Montana Supreme Court,"Missoula, Montana ",46.878718,-113.996586
+16-466,California,04/25/17,06/19/17,Judicial Power,8-1,Reversed,Major Majority,Supreme Court of California,"San Francisco, California",37.774929,-122.419416
+16-529,New Mexico,04/18/17,06/05/17,Economic Activity ,9-0,Reversed,Major Majority,District Court for the District of New Mexico,"Albuquerque, New Mexico",35.085334,-106.605553
+16-605,New York,04/17/17,06/05/17,Judicial Power,9-0,Vacated ,Major Majority,2nd Circuit,"Chester, New York",41.362594,-74.271261
+16-5294,Alabama,04/24/17,06/19/17,Due Process,5-4,Reversed,Liberal,11th Circuit,"Birmingham, Alabama",33.520661,-86.80249
+16-6219,Texas,04/24/17,06/26/17,Criminal Procedure,5-4,Affirmed ,Conservative,5th Circuit,"Fort Worth, Texas",32.755488,-97.330766

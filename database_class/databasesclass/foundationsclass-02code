@@ -1,0 +1,134 @@
+#
+# May 24, 2017: Data Structure
+#
+
+# Nothing in here yet...
+# LISTS AND DICTIONARIES 
+#FOR LOOP 
+#COUNT THINGS (ELEMENTS) IN A LIST 
+#min, max, average 
+#Libraries and modules :) 
+#requests 
+
+
+# We know about strings
+name = "Maija"
+home = "Atlanta"
+# We know about integers
+age = 25
+
+print("Hello my name is", name, "and I live in", home, "and I am", age, "years old")
+
+
+
+friend_name = "Jen"
+friend_home = "Brooklyn"
+friend_age = 33
+
+print("I have a friend named", friend_name)
+print("She lives in", friend_home)
+print("And she is", friend_age, "years old")
+#you are a person with certain attributes, and multiple of them 
+
+#DICTIONARY 
+myself = {
+  'name': 'Maija',
+  'age': 25,
+  'home': 'Atlanta'
+}
+
+
+friend = {
+  'friend_name': 'Brandon',
+  'friend_age': 23,
+  'freind_home': 'Atlanta'
+}
+print(myself)
+print("My name is", myself ['name'])
+
+print (friend)
+print ("My friend's name is", friend ["friend_name"])
+
+
+cat1_age = 7
+cat2_age = 9
+cat3_age = 2 
+
+print (cat1_age + cat2_age + cat3_age)
+
+#CREATING A LIST 
+
+cat_ages = [7,9,2,5]
+print (cat_ages)
+print(sum(cat_ages))
+print("We have", len(cat_ages), "cat ages")
+
+#COUNT ELEMENTS IN A LIST
+
+experience = [0,4,3,2,1,1,15,5,20,0,0,0]
+print(len(experience))
+print(experience.count(0))
+#len is a function, so it is in the front 
+#.count is a method, so it comes after 
+cat1_name = "Smushface"
+cat2_name = "Boy Abby"
+cat3_name = "Triples"
+
+cats = ["Smushface", "Boy Abby", "Triples"]
+print(cats)
+#FOR LOOP 
+
+for cat in cats:
+  print (cats, "!!!")
+
+#make it upper case 
+
+print(cat.upper(), "!!!!!")
+
+#if you only want one of the things in a list 
+#cat [0] is the FIRST THING IN A LIST!! 
+
+print(cats[0])
+
+myself = {
+  'name': 'Maija',
+  'age': 25,
+  'home': 'Atlanta'
+}
+
+
+friend = {
+  'friend_name': 'Brandon',
+  'friend_age': 23,
+  'friend_home': 'Atlanta'
+}
+
+for something in myself:
+  print (something)
+
+
+#len() counts the number of elements in a list 
+#sum() adds all the elements in a list up 
+print(len(experience), "total students")
+print (sum(experience), "total years")
+print (max(experience))
+print (min(experience))
+#the manual way...
+print (sum(experience) / len(experience))
+#or the better way... 
+import statistics
+exp_mean = statistics.mean(experience)
+print(statistics.mean(experience))
+
+
+#Statistics is a package, libary or a module -- a pre-written code. Statistics comes with python 
+#urllib
+#urllib2
+#httplib
+#BeautifulSoup 
+#WANT YOU WANT TO USE IS REQUESTS (requests)
+
+
+
+
+
